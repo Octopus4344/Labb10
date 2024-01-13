@@ -21,6 +21,7 @@ public class UI {
                 break;
             case 2:
                 System.out.println("lista obiektow");
+                scene.showItems();
                 break;
             case 3:
                 scene.draw();

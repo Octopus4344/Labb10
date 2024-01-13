@@ -9,7 +9,12 @@ import org.opencv.highgui.HighGui;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-public class Triangle extends Shape{
+public class Triangle extends Shape implements Singleton{
+    @Override
+    public void replaceItem(LinkedList<Item> list) {
+        list.removeIf(item->item.getClass().equals(this.getClass()));
+        list.add(this);
+    }
 
     private Point p1;
     private Point p2;
