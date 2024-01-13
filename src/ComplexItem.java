@@ -22,6 +22,7 @@ public class ComplexItem extends Item{
     }
     public void add(Item child){
         children.add(child);
+        this.position=calculatePosition();
     }
 
     public LinkedList<Item> getChildren() {
@@ -42,6 +43,7 @@ public class ComplexItem extends Item{
 
     @Override
     public Point[] getBoundingBox() {
+        if (children.isEmpty()) return null;
         children.sort(Item::compareToHigher);
         //int y3 = children.get(0).position.getY();
         LinkedList<Point> list =new LinkedList<Point>(Arrays.asList(children.getLast().getBoundingBox()));
@@ -65,6 +67,7 @@ public class ComplexItem extends Item{
 
     @Override
     public void draw(Mat src) {
+        if (children.isEmpty()) return;
         for (Item i: children) {
             i.draw(src);
         }
@@ -76,11 +79,12 @@ public class ComplexItem extends Item{
         Imgproc.rectangle (src, point4, point5, color1, thickness1);
         //Saving and displaying the image
         Imgcodecs.imwrite("arrowed_line.jpg", src);
-        HighGui.imshow("Drawing a rectangle", src);
+        //HighGui.imshow("Drawing a rectangle", src);
 
 
     }
     public Point calculatePosition(){
+        if (children.isEmpty()) return null;
         children.sort(Item::compareToHigher);
         LinkedList<Point> list1 =new LinkedList<Point>(Arrays.asList(children.getFirst().getBoundingBox()));
         children.sort(Item::compareToCloser);

@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class UI {
 
-    private Scene scene;
-    private Scanner scanner;
+    private final Scene scene;
+    private final Scanner scanner;
 
     public UI(Scene scene) {
         this.scene = scene;
