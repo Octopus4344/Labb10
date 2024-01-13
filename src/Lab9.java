@@ -33,7 +33,10 @@ public class Lab9 {
         Scanner scanner = new Scanner(System.in);
         boolean exit;
         if (display) displayMenu();
-        scanner.nextLine();
+        int choice=scanner.nextInt();
+        switch(choice){
+
+        }
 
     }
     public static void displayMenu(){
