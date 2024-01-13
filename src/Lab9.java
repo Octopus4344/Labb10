@@ -25,25 +25,10 @@ public class Lab9 {
 //        scene.addItem(triangle);
 //        scene.addItem(circle);
 //        scene.addItem(text);
-        run(true);
+        Scene scene = new Scene();
+        UI ui = new UI(scene);
+        ui.run();
         //scene.addItem(star);
         //scene.draw();
-    }
-    public static void run(boolean display){
-        Scanner scanner = new Scanner(System.in);
-        boolean exit;
-        if (display) displayMenu();
-        int choice=scanner.nextInt();
-        switch(choice){
-
-        }
-
-    }
-    public static void displayMenu(){
-        System.out.println("Menu:");
-        System.out.println("1-Dodaj nowy obiekt do sceny");
-        System.out.println("2-wyswietl liste obiektiw dodanych do sceny");
-        System.out.println("3-Rysuj scene");
-        System.out.println("4-Wyjdz");
     }
 }
