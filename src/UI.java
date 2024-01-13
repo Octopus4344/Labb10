@@ -21,8 +21,14 @@ public class UI {
                 break;
             case 2:
                 System.out.println("lista obiektow");
+                scene.showItems();
                 break;
             case 3:
+                scene.draw();
+                break;
+            case 4:
+                int index=scanner.nextInt();
+                scene.decorate(index);
                 scene.draw();
                 break;
             default:
@@ -37,7 +43,9 @@ public class UI {
         System.out.println("1-Dodaj nowy obiekt do sceny");
         System.out.println("2-wyswietl liste obiektiw dodanych do sceny");
         System.out.println("3-Rysuj scene");
-        System.out.println("4-Wyjdz");
+        System.out.println("4-Rysuj prostokat ograniczajacy dla obiektu o wybranym indkesie");
+        System.out.println("5-Wyjdz");
+
     }
     public Item addItem() {
         System.out.println("Wybierz obiekt:");
@@ -165,5 +173,6 @@ public class UI {
         int y3 = scanner.nextInt();
         return new Triangle(filled, new Point(x,y), new Point(x1,y1), new Point(x3,y3));
     }
+
 }
 

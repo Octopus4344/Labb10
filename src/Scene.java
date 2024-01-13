@@ -50,4 +50,16 @@ public class Scene {
 
 
     }
+    public void showItems(){
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println(i+": "+items.get(i).getClass().getName()+" x:" + items.get(i).getPosition().getX()+
+                    " y: "+items.get(i).getPosition().getY());
+        }
+    }
+    public void decorate(int index){
+        Item decoratedItem = new DecoratedItem(items.get(index));
+        items.remove(index);
+        items.add(decoratedItem);
+
+    }
 }
