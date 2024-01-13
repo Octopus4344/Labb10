@@ -64,15 +64,15 @@ public class Star extends Shape{
             Imgcodecs.imwrite("arrowed_line.jpg", src);
             //HighGui.imshow("Drawing an polygon", src);
         }
-        Point[] arr = getBoundingBox();
-        org.opencv.core.Point point40 = new org.opencv.core.Point(position.getX(), position.getY());
-        org.opencv.core.Point point50 = new org.opencv.core.Point(arr[2].getX(), arr[2].getY());
-        Scalar color1 = new Scalar(64, 64, 64);
-        int thickness1 = 1;
-        Imgproc.rectangle (src, point40, point50, color1, thickness1);
-        //Saving and displaying the image
-        Imgcodecs.imwrite("arrowed_line.jpg", src);
-        //HighGui.imshow("Drawing a rectangle", src);
+//        Point[] arr = getBoundingBox();
+//        org.opencv.core.Point point40 = new org.opencv.core.Point(position.getX(), position.getY());
+//        org.opencv.core.Point point50 = new org.opencv.core.Point(arr[2].getX(), arr[2].getY());
+//        Scalar color1 = new Scalar(64, 64, 64);
+//        int thickness1 = 1;
+//        Imgproc.rectangle (src, point40, point50, color1, thickness1);
+//        //Saving and displaying the image
+//        Imgcodecs.imwrite("arrowed_line.jpg", src);
+//        //HighGui.imshow("Drawing a rectangle", src);
 
 
     }
