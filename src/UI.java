@@ -20,20 +20,25 @@ public class UI {
                 scene.addItem(addItem());
                 break;
             case 2:
-                System.out.println("lista obiektow");
+                System.out.println("lista obiektow:");
                 scene.showItems();
                 break;
             case 3:
                 scene.draw();
                 break;
             case 4:
+                System.out.println("Podaj indeks:");
                 int index=scanner.nextInt();
+                if(index>=scene.getItems().size()){
+                    System.out.println("Niewlasciwy index");
+                    break;
+                }
                 scene.decorate(index);
                 scene.draw();
                 break;
             default:
                 exit = true;
-                break;
+                return;
         }
         if(!exit) run();
 
@@ -41,7 +46,7 @@ public class UI {
     public  void displayMenu(){
         System.out.println("Menu:");
         System.out.println("1-Dodaj nowy obiekt do sceny");
-        System.out.println("2-wyswietl liste obiektiw dodanych do sceny");
+        System.out.println("2-Wyswietl liste obiektow dodanych do sceny");
         System.out.println("3-Rysuj scene");
         System.out.println("4-Rysuj prostokat ograniczajacy dla obiektu o wybranym indkesie");
         System.out.println("5-Wyjdz");

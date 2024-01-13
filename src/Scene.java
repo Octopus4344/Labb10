@@ -28,6 +28,10 @@ public class Scene {
         items.add(item);
     }
 
+    public LinkedList<Item> getItems() {
+        return items;
+    }
+
     public void draw(){
         //Loading the OpenCV core library
         //System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
