@@ -20,6 +20,9 @@ public class ComplexItem extends Item{
         this.position=calculatePosition();
 
     }
+    public void add(Item child){
+        children.add(child);
+    }
 
     public LinkedList<Item> getChildren() {
         return children;

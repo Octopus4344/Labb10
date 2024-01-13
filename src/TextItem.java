@@ -50,7 +50,7 @@ public class TextItem extends Item{
         //Adding text to the image
         Imgproc.putText(src, text, pos, font, scale, color, thickness);
         //Displaying the resultant Image
-        HighGui.imshow("Contours operation", src);
+       // HighGui.imshow("Contours operation", src);
         Point[] arr = getBoundingBox();
         org.opencv.core.Point point2 = new org.opencv.core.Point(position.getX(), position.getY());
         org.opencv.core.Point point1 = new org.opencv.core.Point(arr[2].getX(), arr[2].getY());
@@ -59,7 +59,7 @@ public class TextItem extends Item{
         Imgproc.rectangle (src, point1, point2, color1, thickness1);
         //Saving and displaying the image
         Imgcodecs.imwrite("arrowed_line.jpg", src);
-        HighGui.imshow("Drawing a rectangle", src);
+        //HighGui.imshow("Drawing a rectangle", src);
     }
 
     public String getText() {

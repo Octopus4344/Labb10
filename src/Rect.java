@@ -56,7 +56,7 @@ public class Rect extends Shape{
         Imgproc.rectangle (src, point1, point2, color, thickness);
         //Saving and displaying the image
         Imgcodecs.imwrite("arrowed_line.jpg", src);
-        HighGui.imshow("Drawing a rectangle", src);
+        //HighGui.imshow("Drawing a rectangle", src);
 
     }
 

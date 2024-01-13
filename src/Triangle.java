@@ -107,7 +107,7 @@ public class Triangle extends Shape{
             Imgproc.fillConvexPoly (src, points, color);
             //Saving and displaying the image
             Imgcodecs.imwrite("arrowed_line.jpg", src);
-            HighGui.imshow("Drawing an polygon", src);
+           // HighGui.imshow("Drawing an polygon", src);
         }
         Point[] arr = getBoundingBox();
         org.opencv.core.Point point4 = new org.opencv.core.Point(position.getX(), position.getY());
@@ -117,7 +117,7 @@ public class Triangle extends Shape{
         Imgproc.rectangle (src, point4, point5, color1, thickness1);
         //Saving and displaying the image
         Imgcodecs.imwrite("arrowed_line.jpg", src);
-        HighGui.imshow("Drawing a rectangle", src);
+        //HighGui.imshow("Drawing a rectangle", src);
 
 
     }

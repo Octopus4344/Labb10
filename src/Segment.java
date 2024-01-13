@@ -111,7 +111,7 @@ public class Segment extends PrimitiveItem{
         Imgproc.line(src, PStart, PEnd, color, thickness);
         //Saving and displaying the image
         Imgcodecs.imwrite("arrowed_line.jpg", src);
-        HighGui.imshow("Drawing a line", src);
+        //HighGui.imshow("Drawing a line", src);
         Point[] arr = getBoundingBox();
         org.opencv.core.Point point1 = new org.opencv.core.Point(position.getX(), position.getY());
         org.opencv.core.Point point2 = new org.opencv.core.Point(arr[1].getX(), arr[1].getY());
@@ -120,7 +120,7 @@ public class Segment extends PrimitiveItem{
         Imgproc.rectangle (src, point1, point2, color1, thickness1);
         //Saving and displaying the image
         Imgcodecs.imwrite("arrowed_line.jpg", src);
-        HighGui.imshow("Drawing a rectangle", src);
+        //HighGui.imshow("Drawing a rectangle", src);
 
 
     }

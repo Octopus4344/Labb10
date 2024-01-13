@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class UI {
@@ -16,16 +17,15 @@ public class UI {
         int choice=scanner.nextInt();
         switch(choice){
             case 1:
-                addItem();
+                scene.addItem(addItem());
                 break;
             case 2:
                 System.out.println("lista obiektow");
                 break;
             case 3:
-                System.out.println("rysuje");
                 scene.draw();
                 break;
-            case 4:
+            default:
                 exit = true;
                 break;
         }
@@ -39,7 +39,7 @@ public class UI {
         System.out.println("3-Rysuj scene");
         System.out.println("4-Wyjdz");
     }
-    public  void addItem() {
+    public Item addItem() {
         System.out.println("Wybierz obiekt:");
         System.out.println("1-Kolo");
         System.out.println("2-Prostokat");
@@ -51,32 +51,28 @@ public class UI {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                addCircle();
-                break;
+                return addCircle();
             case 2:
-                addRect();
-                break;
+                return addRect();
             case 3:
-                addSegment();
-                break;
+                return addSegment();
             case 4:
-                addStar();
-                break;
+                return addStar();
             case 5:
-                addComplex();
-                break;
+                return addComplex();
             case 6:
-                addText();
-                break;
+                return addText();
             case 7:
-                addTriangle();
-                break;
+                return addTriangle();
+            default:
+                System.out.println("nieprawidlowy wybor");
+                return addItem();
 
 
         }
     }
 
-    public void addCircle(){
+    public Item addCircle(){
         System.out.println("Obiket wypelniony? false/true");
         boolean filled = scanner.nextBoolean();
         System.out.println("Podaj wspolrzedna x");
@@ -85,15 +81,89 @@ public class UI {
         int y = scanner.nextInt();
         System.out.println("Podaj promien");
         int radius = scanner.nextInt();
-        Item circle = new Circle(filled, new Point(x,y), radius);
-        scene.addItem(circle);
+        return new Circle(filled, new Point(x,y), radius);
 
     }
-    public void addRect(){}
-    public void addSegment(){}
-    public void addStar(){}
-    public void addComplex(){}
-    public void addText(){}
-    public void addTriangle(){}
+    public Item addRect(){
+        System.out.println("Obiket wypelniony? false/true");
+        boolean filled = scanner.nextBoolean();
+        System.out.println("Podaj wspolrzedna x");
+        int x = scanner.nextInt();
+        System.out.println("Podaj wspolrzedna y");
+        int y = scanner.nextInt();
+        System.out.println("Podaj wysokosc");
+        int height = scanner.nextInt();
+        System.out.println("Podaj szerokosc");
+        int width = scanner.nextInt();
+        return new Rect(filled,width, height, new Point(x,y));
+
+    }
+    public Item addSegment(){
+        System.out.println("Punkt startowy:");
+        System.out.println("Podaj wspolrzedna x");
+        int x = scanner.nextInt();
+        System.out.println("Podaj wspolrzedna y");
+        int y = scanner.nextInt();
+        System.out.println("Punkt koncowy");
+        System.out.println("Podaj wspolrzedna x");
+        int x1 = scanner.nextInt();
+        System.out.println("Podaj wspolrzedna y");
+        int y1 = scanner.nextInt();
+        return new Segment(new Point(x,y),new Point(x1,y1));
+
+    }
+    public Item addStar(){
+        System.out.println("Obiket wypelniony? false/true");
+        boolean filled = scanner.nextBoolean();
+        System.out.println("Podaj wspolrzedna x");
+        int x = scanner.nextInt();
+        System.out.println("Podaj wspolrzedna y");
+        int y = scanner.nextInt();
+        System.out.println("Podaj promien");
+        int radius = scanner.nextInt();
+        return new Star(filled, new Point(x,y), radius);
+
+    }
+    public Item addComplex(){
+        System.out.println("Ile obiektow chcesz dodac?");
+        int choice = scanner.nextInt();
+        ComplexItem complex = new ComplexItem(new LinkedList<>());
+        for(int i = 0; i<choice; i++){
+            complex.add(addItem());
+        }
+        return complex;
+
+    }
+    public Item addText(){
+        System.out.println("Podaj wspolrzedna x");
+        int x = scanner.nextInt();
+        System.out.println("Podaj wspolrzedna y");
+        int y = scanner.nextInt();
+        System.out.println("Podaj tresc");
+        scanner.nextLine();
+        String sText = scanner.nextLine();
+        return new TextItem(new Point(x,y),sText);
+
+    }
+    public Item addTriangle(){
+        System.out.println("Obiket wypelniony? false/true");
+        boolean filled = scanner.nextBoolean();
+        System.out.println("Punkt pierwszy:");
+        System.out.println("Podaj wspolrzedna x");
+        int x = scanner.nextInt();
+        System.out.println("Podaj wspolrzedna y");
+        int y = scanner.nextInt();
+        System.out.println("Punkt drugi");
+        System.out.println("Podaj wspolrzedna x");
+        int x1 = scanner.nextInt();
+        System.out.println("Podaj wspolrzedna y");
+        int y1 = scanner.nextInt();
+        System.out.println("Punkt trzeci:");
+        System.out.println("Podaj wspolrzedna x");
+        int x3 = scanner.nextInt();
+        System.out.println("Podaj wspolrzedna y");
+        int y3 = scanner.nextInt();
+        return new Triangle(filled, new Point(x,y), new Point(x1,y1), new Point(x3,y3));
+    }
 }
 

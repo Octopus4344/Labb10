@@ -54,7 +54,7 @@ public class Star extends Shape{
             Imgproc.polylines(src, list, isClosed, color, thickness);
             //Saving and displaying the image
             Imgcodecs.imwrite("arrowed_line.jpg", src);
-            HighGui.imshow("Drawing a polylines", src);
+            //HighGui.imshow("Drawing a polylines", src);
         }
         else{
             MatOfPoint points = new MatOfPoint (point1,point2,point3,point4,point5,point6,point7,point8);
@@ -62,7 +62,7 @@ public class Star extends Shape{
             Imgproc.fillConvexPoly (src, points, color);
             //Saving and displaying the image
             Imgcodecs.imwrite("arrowed_line.jpg", src);
-            HighGui.imshow("Drawing an polygon", src);
+            //HighGui.imshow("Drawing an polygon", src);
         }
         Point[] arr = getBoundingBox();
         org.opencv.core.Point point40 = new org.opencv.core.Point(position.getX(), position.getY());
@@ -72,7 +72,7 @@ public class Star extends Shape{
         Imgproc.rectangle (src, point40, point50, color1, thickness1);
         //Saving and displaying the image
         Imgcodecs.imwrite("arrowed_line.jpg", src);
-        HighGui.imshow("Drawing a rectangle", src);
+        //HighGui.imshow("Drawing a rectangle", src);
 
 
     }
