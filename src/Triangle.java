@@ -99,7 +99,7 @@ public class Triangle extends Shape{
             Imgproc.polylines(src, list, isClosed, color, thickness);
             //Saving and displaying the image
             Imgcodecs.imwrite("arrowed_line.jpg", src);
-            HighGui.imshow("Drawing a polylines", src);
+            //HighGui.imshow("Drawing a polylines", src);
         }
         else{
             MatOfPoint points = new MatOfPoint (point1,point2,point3);
