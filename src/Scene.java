@@ -33,6 +33,10 @@ public class Scene {
         else items.add(item);
     }
 
+    public LinkedList<Item> getItems() {
+        return items;
+    }
+
     public void draw(){
         src = Imgcodecs.imread("C:\\Users\\Apolonia\\Pictures\\white.jpg");
         for (Item i: items) {
@@ -42,6 +46,13 @@ public class Scene {
         HighGui.waitKey();
         name = name+ "1";
 
+
+    }
+
+    public void decorate(int index){
+        Item decoratedItem = new DecoratedItem(items.get(index));
+        items.remove(index);
+        items.add(decoratedItem);
 
     }
 }
