@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 import java.util.Scanner;
 
+
 public class UI {
 
     private final Scene scene;
@@ -140,7 +141,7 @@ public class UI {
     public Item addComplex(){
         System.out.println("Ile obiektow chcesz dodac?");
         int choice = scanner.nextInt();
-        ComplexItem complex = new ComplexItem(new LinkedList<>());
+        ComplexItem complex = new ComplexItem();
         for(int i = 0; i<choice; i++){
             complex.add(addItem());
         }

@@ -10,10 +10,24 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 public class Triangle extends Shape implements Singleton{
+//    @Override
+//    public void replaceItem(LinkedList<Item> list) {
+//        list.removeIf(item->item.getClass().equals(this.getClass()));
+//
+//        list.add(this);
+//    }
+
     @Override
-    public void replaceItem(LinkedList<Item> list) {
-        list.removeIf(item->item.getClass().equals(this.getClass()));
-        list.add(this);
+    public void removeItem(LinkedList<Item> list) {
+        for(int i =0; i< list.size(); i++){
+            if(list.get(i) instanceof ComplexItem){
+                removeItem(((ComplexItem) list.get(i) ).getChildren());
+            }
+            if(list.get(i) instanceof Singleton){
+                list.remove(i);
+            }
+
+        }
     }
 
     private Point p1;
@@ -103,7 +117,7 @@ public class Triangle extends Shape implements Singleton{
             int thickness = 10;
             Imgproc.polylines(src, list, isClosed, color, thickness);
             //Saving and displaying the image
-            Imgcodecs.imwrite("arrowed_line.jpg", src);
+            //Imgcodecs.imwrite("arrowed_line.jpg", src);
             //HighGui.imshow("Drawing a polylines", src);
         }
         else{

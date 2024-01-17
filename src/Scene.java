@@ -28,9 +28,9 @@ public class Scene {
 
     public void addItem(Item item){
         if(item instanceof Singleton){
-            ((Singleton) item).replaceItem(items);
+            ((Singleton) item).removeItem(items);
         }
-        else items.add(item);
+         items.add(item);
     }
 
     public LinkedList<Item> getItems() {

@@ -6,23 +6,41 @@ import org.opencv.imgproc.Imgproc;
 
 import java.util.*;
 
-public class ComplexItem extends Item{
+public class ComplexItem extends Item implements Singleton{
+    private Boolean containsSingleton;
 
     LinkedList<Item> children;
 
-    public ComplexItem(Point position, LinkedList<Item> children) {
+    public ComplexItem(Point position) {
         super(position);
-        this.children = children;
+        //this.children = children;
+
     }
 
-    public ComplexItem(LinkedList<Item> children) {
-        this.children = children;
-        this.position=calculatePosition();
-
+//    public ComplexItem(LinkedList<Item> children) {
+//        this.children = children;
+//        this.position=calculatePosition();
+//
+//    }
+    public ComplexItem() {
+        children= new LinkedList<>();
     }
     public void add(Item child){
+        if(child instanceof ComplexItem){
+            if(((ComplexItem) child).getContainsSingleton());
+            ((Singleton) child).removeItem(children);
+            containsSingleton=true;
+        }
+        else if(child instanceof Singleton){
+            ((Singleton) child).removeItem(children);
+            containsSingleton=true;
+        }
         children.add(child);
         this.position=calculatePosition();
+    }
+
+    public Boolean getContainsSingleton() {
+        return containsSingleton;
     }
 
     public LinkedList<Item> getChildren() {
@@ -98,5 +116,18 @@ public class ComplexItem extends Item{
 //        children.sort(Item::compareToCloser);
 //        int x = children.get(0).position.getX();
         return  new Point(x,y);
+    }
+
+    @Override
+    public void removeItem(LinkedList<Item> list) {
+        for(int i =0; i< list.size(); i++){
+            if(list.get(i) instanceof ComplexItem){
+                removeItem(((ComplexItem) list.get(i) ).getChildren());
+            }
+            else if(list.get(i) instanceof Singleton){
+                list.remove(i);
+            }
+
+        }
     }
 }
