@@ -37,6 +37,20 @@ public class UI {
                 scene.decorate(index);
                 scene.draw();
                 break;
+            case 5:
+                System.out.println("Podaj indeks:");
+                index=scanner.nextInt();
+                if(index>=scene.getItems().size()){
+                    System.out.println("Niewlasciwy index");
+                    break;
+                }
+                System.out.println("Podaj wspolrzedna x");
+                int x = scanner.nextInt();
+                System.out.println("Podaj wspolrzedna y");
+                int y = scanner.nextInt();
+                scene.getItems().get(index).translate(new Point(x,y));
+                scene.draw();
+                break;
             default:
                 exit = true;
                 return;
@@ -50,7 +64,8 @@ public class UI {
         System.out.println("2-Wyswietl liste obiektow dodanych do sceny");
         System.out.println("3-Rysuj scene");
         System.out.println("4-Rysuj prostokat ograniczajacy dla obiektu o wybranym indkesie");
-        System.out.println("5-Wyjdz");
+        System.out.println("5-Wykonaj translacje dla obiektu o wybranym indkesie");
+        System.out.println("6-Wyjdz");
 
     }
     public Item addItem() {

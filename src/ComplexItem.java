@@ -130,5 +130,6 @@ public class ComplexItem extends Item implements Singleton{
             }
 
         }
+        this.position=calculatePosition();
     }
 }
