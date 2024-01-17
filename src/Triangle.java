@@ -23,7 +23,7 @@ public class Triangle extends Shape implements Singleton{
             if(list.get(i) instanceof ComplexItem){
                 removeItem(((ComplexItem) list.get(i) ).getChildren());
             }
-            if(list.get(i) instanceof Singleton){
+            else if(list.get(i) instanceof Singleton){
                 list.remove(i);
             }
 
