@@ -1,5 +1,3 @@
-
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import org.opencv.core.Mat;
@@ -7,11 +5,11 @@ import org.opencv.core.Scalar;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
-public class DecoratedItem extends Item {
-    private final Item item;
+public class DecoratedItem extends Decorator {
+
 
     public DecoratedItem(Item item) {
-        this.item = item;
+        super(item);
         this.position = item.getPosition();
     }
 
