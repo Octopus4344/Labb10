@@ -27,9 +27,10 @@ public class ComplexItem extends Item implements Singleton{
     }
     public void add(Item child){
         if(child instanceof ComplexItem){
-            if(((ComplexItem) child).getContainsSingleton());
-            ((Singleton) child).removeItem(children);
-            containsSingleton=true;
+            if(((ComplexItem) child).getContainsSingleton()) {
+                ((Singleton) child).removeItem(children);
+                containsSingleton = true;
+            }
         }
         else if(child instanceof Singleton){
             ((Singleton) child).removeItem(children);
