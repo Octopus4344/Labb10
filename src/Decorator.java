@@ -1,12 +1,7 @@
-public abstract class Decorator extends  Item{
-    protected final Item item;
+public abstract class Decorator implements IItem {
+    protected final IItem item;
 
-    public Decorator(Point position, Item item) {
-        super(position);
-        this.item = item;
-    }
-
-    public Decorator(Item item) {
+    public Decorator(IItem item) {
         this.item = item;
     }
 }

@@ -1,15 +1,12 @@
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
-import org.opencv.highgui.HighGui;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
 
 import java.util.*;
 
 public class ComplexItem extends Item implements Singleton{
     private Boolean containsSingleton;
 
-    LinkedList<Item> children;
+    LinkedList<IItem> children;
 
     public ComplexItem(Point position) {
         super(position);
@@ -25,7 +22,7 @@ public class ComplexItem extends Item implements Singleton{
     public ComplexItem() {
         children= new LinkedList<>();
     }
-    public void add(Item child){
+    public void add(IItem child){
         if(child instanceof ComplexItem){
             if(((ComplexItem) child).getContainsSingleton()) {
                 ((Singleton) child).removeItem(children);
@@ -44,18 +41,18 @@ public class ComplexItem extends Item implements Singleton{
         return containsSingleton;
     }
 
-    public LinkedList<Item> getChildren() {
+    public LinkedList<IItem> getChildren() {
         return children;
     }
 
-    public void setChildren(LinkedList<Item> children) {
+    public void setChildren(LinkedList<IItem> children) {
         this.children = children;
     }
 
     @Override
     public void translate(Point p) {
         position.translate(p);
-        for (Item i: children) {
+        for (IItem i: children) {
             i.translate(p);
         }
     }
@@ -63,11 +60,11 @@ public class ComplexItem extends Item implements Singleton{
     @Override
     public Point[] getBoundingBox() {
         if (children.isEmpty()) return null;
-        children.sort(Item::compareToHigher);
+        children.sort(IItem::compareToHigher);
         //int y3 = children.get(0).position.getY();
         LinkedList<Point> list =new LinkedList<Point>(Arrays.asList(children.getLast().getBoundingBox()));
         LinkedList<Point> list1 =new LinkedList<Point>(Arrays.asList(children.getFirst().getBoundingBox()));
-        children.sort(Item::compareToCloser);
+        children.sort(IItem::compareToCloser);
         LinkedList<Point> list2 =new LinkedList<Point>(Arrays.asList(children.getLast().getBoundingBox()));
         LinkedList<Point> list3 =new LinkedList<Point>(Arrays.asList(children.getFirst().getBoundingBox()));
         list.sort(Point::compareToHigher);
@@ -87,7 +84,7 @@ public class ComplexItem extends Item implements Singleton{
     @Override
     public void draw(Mat src) {
         if (children.isEmpty()) return;
-        for (Item i: children) {
+        for (IItem i: children) {
             i.draw(src);
         }
         Point[] arr = getBoundingBox();
@@ -104,9 +101,9 @@ public class ComplexItem extends Item implements Singleton{
     }
     public Point calculatePosition(){
         if (children.isEmpty()) return null;
-        children.sort(Item::compareToHigher);
+        children.sort(IItem::compareToHigher);
         LinkedList<Point> list1 =new LinkedList<Point>(Arrays.asList(children.getFirst().getBoundingBox()));
-        children.sort(Item::compareToCloser);
+        children.sort(IItem::compareToCloser);
         LinkedList<Point> list3 =new LinkedList<Point>(Arrays.asList(children.getFirst().getBoundingBox()));
         list1.sort(Point::compareToHigher);
         list3.sort(Point::compareToCloser);
@@ -120,13 +117,19 @@ public class ComplexItem extends Item implements Singleton{
     }
 
     @Override
-    public void removeItem(LinkedList<Item> list) {
+    public void removeItem(LinkedList<IItem> list) {
         for(int i =0; i< list.size(); i++){
             if(list.get(i) instanceof ComplexItem){
                 removeItem(((ComplexItem) list.get(i) ).getChildren());
             }
             else if(list.get(i) instanceof Singleton){
                 list.remove(i);
+            }
+
+            else if(list.get(i) instanceof DecoratedItem){
+                if (((DecoratedItem) list.get(i)).item instanceof Singleton ) list.remove(list.get(i));
+//                else if ((((DecoratedItem) myItem).item instanceof ComplexItem ))
+//                    removeItem(((ComplexItem) (((DecoratedItem) myItem)).item).getChildren());
             }
 
         }

@@ -1,9 +1,7 @@
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
-import org.opencv.highgui.HighGui;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
-public class TextItem extends Item{
+public class TextItem extends Item {
 
     private String text;
 

@@ -8,13 +8,22 @@ import org.opencv.imgproc.Imgproc;
 public class DecoratedItem extends Decorator {
 
 
-    public DecoratedItem(Item item) {
+    public DecoratedItem(IItem item) {
         super(item);
-        this.position = item.getPosition();
     }
 
     public void translate(Point p) {
         this.item.translate(p);
+    }
+
+    @Override
+    public int compareToHigher(Object other) {
+        return item.compareToHigher(other);
+    }
+
+    @Override
+    public int compareToCloser(Object other) {
+        return item.compareToCloser(other);
     }
 
     public Point[] getBoundingBox() {

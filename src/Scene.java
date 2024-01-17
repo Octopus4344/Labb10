@@ -4,13 +4,12 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.highgui.HighGui;
 import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
 
 public class Scene {
     //Reading the source image in to a Mat object
     private Mat src;
 
-    private LinkedList<Item> items;
+    private LinkedList<IItem> items;
     private String name;
 
     public Scene() {
@@ -21,25 +20,24 @@ public class Scene {
     }
     public void showItems(){
         for (int i = 0; i < items.size(); i++) {
-            System.out.println(i+":"+items.get(i).getClass().getName()+" x:" + items.get(i).getPosition().getX()+
-                    " y: "+items.get(i).getPosition().getY());
+            System.out.println(i+":"+items.get(i).getClass().getName());
         }
     }
 
-    public void addItem(Item item){
+    public void addItem(IItem item){
         if(item instanceof Singleton){
             ((Singleton) item).removeItem(items);
         }
          items.add(item);
     }
 
-    public LinkedList<Item> getItems() {
+    public LinkedList<IItem> getItems() {
         return items;
     }
 
     public void draw(){
         src = Imgcodecs.imread("C:\\Users\\Apolonia\\Pictures\\white.jpg");
-        for (Item i: items) {
+        for (IItem i: items) {
             i.draw(src);
         }
         HighGui.imshow(name, src);
@@ -50,7 +48,7 @@ public class Scene {
     }
 
     public void decorate(int index){
-        Item decoratedItem = new DecoratedItem(items.get(index));
+        IItem decoratedItem = new DecoratedItem(items.get(index));
         items.remove(index);
         items.add(decoratedItem);
 

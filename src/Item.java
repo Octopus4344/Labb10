@@ -1,8 +1,6 @@
 import org.opencv.core.Mat;
 
-import java.util.LinkedList;
-
-public abstract class Item {
+public abstract class Item implements IItem{
     protected Point position;
 
     public Item(Point position) {
@@ -53,3 +51,4 @@ public abstract class Item {
 
 
 }
+

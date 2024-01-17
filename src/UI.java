@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 import java.util.Scanner;
 
 
@@ -68,7 +67,7 @@ public class UI {
         System.out.println("6-Wyjdz");
 
     }
-    public Item addItem() {
+    public IItem addItem() {
         System.out.println("Wybierz obiekt:");
         System.out.println("1-Kolo");
         System.out.println("2-Prostokat");
@@ -101,7 +100,7 @@ public class UI {
         }
     }
 
-    public Item addCircle(){
+    public IItem addCircle(){
         System.out.println("Obiket wypelniony? false/true");
         boolean filled = scanner.nextBoolean();
         System.out.println("Podaj wspolrzedna x");
@@ -113,7 +112,7 @@ public class UI {
         return new Circle(filled, new Point(x,y), radius);
 
     }
-    public Item addRect(){
+    public IItem addRect(){
         System.out.println("Obiket wypelniony? false/true");
         boolean filled = scanner.nextBoolean();
         System.out.println("Podaj wspolrzedna x");
@@ -127,7 +126,7 @@ public class UI {
         return new Rect(filled,width, height, new Point(x,y));
 
     }
-    public Item addSegment(){
+    public IItem addSegment(){
         System.out.println("Punkt startowy:");
         System.out.println("Podaj wspolrzedna x");
         int x = scanner.nextInt();
@@ -141,7 +140,7 @@ public class UI {
         return new Segment(new Point(x,y),new Point(x1,y1));
 
     }
-    public Item addStar(){
+    public IItem addStar(){
         System.out.println("Obiket wypelniony? false/true");
         boolean filled = scanner.nextBoolean();
         System.out.println("Podaj wspolrzedna x");
@@ -153,7 +152,7 @@ public class UI {
         return new Star(filled, new Point(x,y), radius);
 
     }
-    public Item addComplex(){
+    public IItem addComplex(){
         System.out.println("Ile obiektow chcesz dodac?");
         int choice = scanner.nextInt();
         ComplexItem complex = new ComplexItem();
@@ -163,7 +162,7 @@ public class UI {
         return complex;
 
     }
-    public Item addText(){
+    public IItem addText(){
         System.out.println("Podaj wspolrzedna x");
         int x = scanner.nextInt();
         System.out.println("Podaj wspolrzedna y");
@@ -174,7 +173,7 @@ public class UI {
         return new TextItem(new Point(x,y),sText);
 
     }
-    public Item addTriangle(){
+    public IItem addTriangle(){
         System.out.println("Obiket wypelniony? false/true");
         boolean filled = scanner.nextBoolean();
         System.out.println("Punkt pierwszy:");

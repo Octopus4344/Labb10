@@ -5,7 +5,6 @@ import java.util.List;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Scalar;
-import org.opencv.highgui.HighGui;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
@@ -18,17 +17,25 @@ public class Triangle extends Shape implements Singleton{
 //    }
 
     @Override
-    public void removeItem(LinkedList<Item> list) {
+    public void removeItem(LinkedList<IItem> list) {
         for(int i =0; i< list.size(); i++){
-            if(list.get(i) instanceof ComplexItem){
-                removeItem(((ComplexItem) list.get(i) ).getChildren());
+            IItem myItem=list.get(i);
+            if(myItem instanceof ComplexItem){
+                removeItem(((ComplexItem) myItem ).getChildren());
             }
-            else if(list.get(i) instanceof Singleton){
-                list.remove(i);
+            else if(myItem instanceof Singleton){
+                list.remove(myItem);
+            }
+            else if(myItem instanceof DecoratedItem){
+                if (((DecoratedItem) myItem).item instanceof Singleton ) list.remove(myItem);
+//                else if ((((DecoratedItem) myItem).item instanceof ComplexItem ))
+//                    removeItem(((ComplexItem) (((DecoratedItem) myItem)).item).getChildren());
+            }
+
             }
 
         }
-    }
+
 
     private Point p1;
     private Point p2;
